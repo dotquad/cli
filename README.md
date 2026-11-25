@@ -35,14 +35,25 @@ It's a single binary with no runtime, for macOS, Linux and Windows.
 
 ## Install
 
-Not released yet. The first release will install with Homebrew, npm or a download:
+Not released yet. Once it is:
 
 ```sh
+# Homebrew (macOS and Linux)
 brew install dotquad/tap/dotquad
+
+# npm
 npm install -g dotquad
+
+# macOS and Linux, without either
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dotquad/cli/releases/latest/download/dotquad-installer.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy Bypass -c "irm https://github.com/dotquad/cli/releases/latest/download/dotquad-installer.ps1 | iex"
 ```
 
-To build it now, install [Rust](https://rustup.rs) and run:
+Each [release](https://github.com/dotquad/cli/releases) also has the archives for macOS (Apple silicon and Intel), Linux (x64 and ARM64) and Windows (x64), with SHA-256 checksums.
+
+To build it from source, install [Rust](https://rustup.rs) and run:
 
 ```sh
 cargo install --git https://github.com/dotquad/cli
@@ -141,6 +152,15 @@ cargo fmt --check
 ```
 
 `DOTQUAD_API_URL` points the CLI at another API, such as a local one (`http://localhost:8080`). `DOTQUAD_CONFIG` uses another config file.
+
+### Release
+
+Releases are built by [cargo-dist](https://opensource.axo.dev/cargo-dist/) in [release.yml](.github/workflows/release.yml), when a version tag is pushed:
+
+1. Set the version in `Cargo.toml`, and move the changelog's Unreleased notes under `## [x.y.z] - date`.
+2. Commit, then tag and push: `git tag v0.1.0 && git push origin v0.1.0`.
+
+The workflow builds every archive and installer and makes the GitHub release. It then commits the formula to [dotquad/homebrew-tap](https://github.com/dotquad/homebrew-tap) and publishes `dotquad` to npm with Trusted Publishing. After changing `dist-workspace.toml`, run `dist generate`, then put the npm job's Trusted Publishing edits back.
 
 ## License
 
