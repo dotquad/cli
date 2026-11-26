@@ -26,6 +26,10 @@ impl Env {
             .env("DOTQUAD_SITE_URL", "https://dotquad.test")
             .env("DOTQUAD_CONFIG", self.dir.path().join("config.toml"))
             .env("NO_COLOR", "1");
+        // Windows can't open a socket without SystemRoot (os error 10106).
+        if let Some(root) = std::env::var_os("SystemRoot") {
+            cmd.env("SystemRoot", root);
+        }
         cmd
     }
 
