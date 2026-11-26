@@ -49,7 +49,7 @@ curl --proto '=https' --tlsv1.2 -LsSf https://github.com/dotquad/cli/releases/la
 powershell -ExecutionPolicy Bypass -c "irm https://github.com/dotquad/cli/releases/latest/download/dotquad-installer.ps1 | iex"
 ```
 
-Each [release](https://github.com/dotquad/cli/releases) also has the archives for macOS (Apple silicon and Intel), Linux (x64 and ARM64) and Windows (x64), with SHA-256 checksums.
+Each [release](https://github.com/dotquad/cli/releases) also has the archives for macOS (Apple silicon), Linux (x64 and ARM64) and Windows (x64), with SHA-256 checksums.
 
 To build it from source, install [Rust](https://rustup.rs) and run:
 
