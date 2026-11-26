@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-26
+
+### Changed
+
+- macOS builds are for Apple silicon only. Intel Macs can build from source with `cargo install`.
+
 ## [0.1.0] - 2026-11-26
 
 ### Added
