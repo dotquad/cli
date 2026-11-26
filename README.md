@@ -153,12 +153,26 @@ cargo fmt --check
 
 ### Release
 
-Releases are built by [cargo-dist](https://opensource.axo.dev/cargo-dist/) in [release.yml](.github/workflows/release.yml), when a version tag is pushed:
+Write the release notes under `## [Unreleased]` in [CHANGELOG.md](CHANGELOG.md) and commit them. Then, on an up-to-date `main`:
 
-1. Set the version in `Cargo.toml`, and move the changelog's Unreleased notes under `## [x.y.z] - date`.
-2. Commit, then tag and push: `git tag v0.1.0 && git push origin v0.1.0`.
+```sh
+scripts/release.sh patch     # or minor, major, or a version such as 0.3.0
+```
 
-The workflow builds every archive and installer and makes the GitHub release. It then commits the formula to [dotquad/homebrew-tap](https://github.com/dotquad/homebrew-tap) and publishes `dotquad` to npm with Trusted Publishing. After changing `dist-workspace.toml`, run `dist generate`, then put the npm job's Trusted Publishing edits back.
+The script:
+
+1. Works out the next version.
+2. Refuses if the tree has changes, `main` isn't the same as `origin/main`, the tag exists, or there are no release notes.
+3. Runs `cargo fmt --check`, clippy and the tests.
+4. Asks before changing anything (`--yes` skips the question).
+5. Sets the version in `Cargo.toml` and `Cargo.lock`, and moves the Unreleased notes under `## [x.y.z] - date`.
+6. Commits `chore: release x.y.z`, tags `vx.y.z`, and pushes both.
+
+A prerelease version such as `0.3.0-rc.1` makes a GitHub prerelease only, and leaves the changelog as it is. The script needs [cargo-dist](https://opensource.axo.dev/cargo-dist/) (`cargo install cargo-dist --locked`) to check the release plan.
+
+Pushing the tag starts [release.yml](.github/workflows/release.yml), built by cargo-dist.
+
+It builds every archive and installer and makes the GitHub release. It then commits the formula to [dotquad/homebrew-tap](https://github.com/dotquad/homebrew-tap) and publishes `dotquad` to npm with Trusted Publishing. After changing `dist-workspace.toml`, run `dist generate`, then put the npm job's Trusted Publishing edits back.
 
 ## License
 
