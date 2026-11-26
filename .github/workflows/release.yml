@@ -282,6 +282,7 @@ jobs:
       - plan
       - host
     runs-on: "ubuntu-22.04"
+    environment: release
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PLAN: ${{ needs.plan.outputs.val }}
@@ -328,6 +329,7 @@ jobs:
       - plan
       - host
     runs-on: "ubuntu-22.04"
+    environment: release
     # npm Trusted Publishing: OIDC instead of a token, and provenance signing.
     permissions:
       "contents": "read"
