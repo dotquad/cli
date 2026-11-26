@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-26
+
 ### Added
 
 - `dotquad <query>` works out whether the query is an IP, domain, ASN, CIDR block or link, and runs the matching check.

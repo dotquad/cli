@@ -35,8 +35,6 @@ It's a single binary with no runtime, for macOS, Linux and Windows.
 
 ## Install
 
-Not released yet. Once it is:
-
 ```sh
 # Homebrew (macOS and Linux)
 brew install dotquad/tap/dotquad
