@@ -23,7 +23,9 @@ tap = "dotquad/homebrew-tap"
 publish-jobs = ["homebrew", "npm"]
 # The npm package: `npm install -g dotquad`
 npm-package = "dotquad"
-# release.yml's npm job is edited by hand for Trusted Publishing (OIDC, no NPM_TOKEN)
+# release.yml is edited by hand, so put these back after `dist generate`:
+# - the npm job uses Trusted Publishing (OIDC, no NPM_TOKEN)
+# - `gh release create` has no --target: with it, GitHub refused the Actions token (HTTP 403)
 allow-dirty = ["ci"]
 # Extra files in each archive
 include = ["TRADEMARKS.md"]

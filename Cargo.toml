@@ -1,6 +1,6 @@
 [package]
 name = "dotquad"
-version = "0.1.0"
+version = "0.1.1-rc.1"
 edition = "2024"
 rust-version = "1.85"
 description = "IP lookup, DNS, WHOIS and domain checks from the terminal, using the Dotquad API."
