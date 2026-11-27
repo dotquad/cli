@@ -26,6 +26,7 @@ npm-package = "dotquad"
 # release.yml is edited by hand, so put these back after `dist generate`:
 # - the npm job uses Trusted Publishing (OIDC, no NPM_TOKEN)
 # - `gh release create` has no --target: with it, GitHub refused the Actions token (HTTP 403)
+# - publish-homebrew-formula and publish-npm run in the `release` environment (v* tags only)
 allow-dirty = ["ci"]
 # Extra files in each archive
 include = ["TRADEMARKS.md"]
